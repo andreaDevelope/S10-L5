@@ -13,6 +13,8 @@ export class CompletedComponent {
   constructor(private todoServ: TodoServiceService) {}
 
   ngOnInit() {
-    this.compTodoArr = this.todoServ.completedTodoArr;
+    this.todoServ.todoArr$.subscribe((todos) => {
+      this.compTodoArr = todos.filter((todo) => todo.completed);
+    });
   }
 }

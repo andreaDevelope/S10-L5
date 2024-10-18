@@ -9,13 +9,7 @@
           <p class="card-text">
             {{ entity.todo }}
           </p>
-          <label for="isActive">è attivo?</label>
-          <input
-            type="checkbox"
-            name="isActive"
-            id="isActive"
-            [checked]="entity.completed"
-          />
+          <p>completed {{ entity.completed }}</p>
         </div>
       </div>
     </div>

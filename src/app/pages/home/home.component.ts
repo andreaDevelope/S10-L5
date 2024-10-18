@@ -13,6 +13,18 @@ export class HomeComponent {
   constructor(private todoServ: TodoServiceService) {}
 
   ngOnInit() {
-    this.todoArr = this.todoServ.todoArr;
+    this.todoServ.todoArr$.subscribe((todos) => {
+      this.todoArr = todos;
+    });
+  }
+
+  toggleCompleted(todo: iTodo) {
+    todo.completed = !todo.completed;
+
+    const updatedTodoArr = this.todoArr.map((t) =>
+      t.id === todo.id ? { ...t, completed: todo.completed } : t
+    );
+
+    this.todoServ.updateTodoList(updatedTodoArr);
   }
 }

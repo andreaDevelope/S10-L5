@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { iTodo } from '../moduls/i-todo';
 import { iUsers } from '../moduls/i-users';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -67,9 +68,20 @@ export class TodoServiceService {
       userId: 32,
     },
   ];
+  private todoSubject = new BehaviorSubject<iTodo[]>(this.todoArr);
+  todoArr$ = this.todoSubject.asObservable();
 
   completedTodoArr: iTodo[] = this.todoArr.filter((todo) => todo.completed);
   constructor() {}
+
+  getTodoArr(): iTodo[] {
+    return this.todoArr;
+  }
+
+  updateTodoList(newTodoArr: iTodo[]) {
+    this.todoArr = newTodoArr;
+    this.todoSubject.next(this.todoArr);
+  }
 
   getTodoListOfUser(users: iUsers[]): void {
     const todosWithUsers = this.todoArr.map((todo) => {

@@ -17,7 +17,9 @@ export class UsersComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.todoArr = this.todoServ.todoArr;
-    this.todoServ.getTodoListOfUser(this.usersServ.usersArr);
+    this.todoServ.todoArr$.subscribe((todos) => {
+      this.todoArr = todos;
+      this.todoServ.getTodoListOfUser(this.usersServ.usersArr);
+    });
   }
 }

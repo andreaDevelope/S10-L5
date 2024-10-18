@@ -12,10 +12,6 @@
     <tr *ngFor="let todo of compTodoArr">
       <td>{{ todo.id }}</td>
       <td>{{ todo.todo }}</td>
-      <td>
-        <input type="checkbox" [checked]="todo.completed" />
-      </td>
-      <td>{{ todo.userId }}</td>
     </tr>
   </tbody>
 </table>
