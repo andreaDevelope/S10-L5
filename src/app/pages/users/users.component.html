@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-4" *ngFor="let entity of todoArr">
+      <div class="card my-2 mx-2">
+        <div class="card-body">
+          <h5 class="card-title">
+            autore {{ entity.userName }} {{ entity.id }}
+          </h5>
+          <p class="card-text">
+            {{ entity.todo }}
+          </p>
+          <label for="isActive">è attivo?</label>
+          <input
+            type="checkbox"
+            name="isActive"
+            id="isActive"
+            [checked]="entity.completed"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
