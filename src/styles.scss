@@ -1,9 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
-
-/* Importing Bootstrap SCSS file. */
 @import "bootstrap/scss/bootstrap";
 main {
   padding-inline: 2rem;
+  min-height: 90vh;
 
   h1 {
     margin-block: 2rem;
@@ -32,4 +30,16 @@ td {
 
 .not-completed {
   background-color: #f8d7da !important;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+footer {
+  min-width: 20vh !important;
+  padding-top: 1rem;
+  background-color: black;
+  color: white;
 }
