@@ -1,15 +1,28 @@
 <div class="container">
   <div class="row">
     <div class="col-12 col-4" *ngFor="let entity of todoArr">
-      <div class="card my-2 mx-2">
+      <div
+        class="card rounded-5 my-3"
+        [ngClass]="{
+          completed: entity.toDo?.completed,
+          'not-completed': !entity.toDo?.completed
+        }"
+      >
+        <img [src]="entity.image" class="card-img-top" alt="img-author" />
         <div class="card-body">
           <h5 class="card-title">
-            autore {{ entity.userName }} {{ entity.id }}
+            {{ entity.firstName }} {{ entity.lastName }}
           </h5>
+          <p>Mansione: {{ entity.title }}</p>
+
           <p class="card-text">
-            {{ entity.todo }}
+            <span *ngIf="entity.toDo; else noTodo">
+              Task: {{ entity.toDo.todo }} (ID: {{ entity.toDo.id }})
+              <span *ngIf="entity.toDo.completed"> - Completed</span>
+              <span *ngIf="!entity.toDo.completed"> - Not Completed</span>
+            </span>
+            <ng-template #noTodo>Nessun to-do assegnato</ng-template>
           </p>
-          <p>completed {{ entity.completed }}</p>
         </div>
       </div>
     </div>

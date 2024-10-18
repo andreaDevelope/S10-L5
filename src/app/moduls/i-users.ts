@@ -1,3 +1,5 @@
+import { iTodo } from './i-todo';
+
 export interface iUsers {
   id: number;
   firstName: string;
@@ -5,4 +7,5 @@ export interface iUsers {
   email: string;
   image: string;
   title: string;
+  toDo?: iTodo;
 }

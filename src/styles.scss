@@ -1,4 +1,35 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
+main {
+  padding-inline: 2rem;
+
+  h1 {
+    margin-block: 2rem;
+    text-align: center;
+    font-weight: 800;
+  }
+}
+
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+tr {
+  border-bottom: 3px solid purple;
+}
+
+td {
+  padding-top: 3rem !important;
+}
+
+.completed {
+  background-color: #d4edda !important;
+}
+
+.not-completed {
+  background-color: #f8d7da !important;
+}

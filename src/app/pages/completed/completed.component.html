@@ -1,17 +1,37 @@
 <h1>Lista dei Todo Completati</h1>
-<table class="table">
-  <thead>
-    <tr>
-      <th>ID</th>
-      <th>Todo</th>
-      <th>Completato</th>
-      <th>ID Utente</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let todo of compTodoArr">
-      <td>{{ todo.id }}</td>
-      <td>{{ todo.todo }}</td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Todo</th>
+        <th>Completato</th>
+        <th>ID Utente</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let todo of compTodoArr">
+        <td
+          [ngClass]="{
+            completed: todo.completed,
+            'not-completed': !todo.completed
+          }"
+        >
+          {{ todo.id }}
+        </td>
+        <td
+          [ngClass]="{
+            completed: todo.completed,
+            'not-completed': !todo.completed
+          }"
+        >
+          {{ todo.todo }}
+        </td>
+        <td>
+          <input type="checkbox" [checked]="todo.completed" disabled />
+        </td>
+        <td>{{ todo.userId }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -93,5 +93,6 @@ export class TodoServiceService {
     });
 
     this.todoArr = todosWithUsers;
+    this.todoSubject.next(this.todoArr);
   }
 }
