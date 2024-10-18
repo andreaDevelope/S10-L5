@@ -9,6 +9,7 @@ import { FooterComponent } from './main-components/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { CompletedComponent } from './pages/completed/completed.component';
 import { UsersComponent } from './pages/users/users.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -17,14 +18,10 @@ import { UsersComponent } from './pages/users/users.component';
     FooterComponent,
     HomeComponent,
     CompletedComponent,
-    UsersComponent
+    UsersComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    NgbModule
-  ],
+  imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
