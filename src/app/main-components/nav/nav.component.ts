@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { iTodo } from '../../moduls/i-todo';
 import { TodoServiceService } from '../../services/todo-service.service';
+import { SearchServiceService } from '../../services/search-service.service';
 
 @Component({
   selector: '.app-nav',
@@ -14,7 +15,10 @@ export class NavComponent {
   searchTerm: string = '';
   filteredTodos: iTodo[] = [];
 
-  constructor(private todoServ: TodoServiceService) {}
+  constructor(
+    private todoServ: TodoServiceService,
+    private searchServ: SearchServiceService
+  ) {}
 
   ngOnInit() {
     this.todoArr = this.todoServ.todoArr;
@@ -26,12 +30,6 @@ export class NavComponent {
   }
 
   searchTodos(): void {
-    if (this.searchTerm.trim() === '') {
-      this.filteredTodos = [...this.todoArr];
-    } else {
-      this.filteredTodos = this.todoArr.filter((todo) =>
-        todo.todo.toLowerCase().includes(this.searchTerm.toLowerCase())
-      );
-    }
+    this.searchServ.updateSearchTerm(this.searchTerm);
   }
 }

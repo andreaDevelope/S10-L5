@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { iTodo } from '../../moduls/i-todo';
 import { TodoServiceService } from '../../services/todo-service.service';
+import { SearchServiceService } from '../../services/search-service.service';
 
 @Component({
   selector: 'app-home',
@@ -9,15 +10,30 @@ import { TodoServiceService } from '../../services/todo-service.service';
 })
 export class HomeComponent {
   todoArr: iTodo[] = [];
+  filteredTodos: iTodo[] = [];
 
-  constructor(private todoServ: TodoServiceService) {}
+  constructor(
+    private todoServ: TodoServiceService,
+    private searchServ: SearchServiceService
+  ) {}
 
   ngOnInit() {
     this.todoServ.todoArr$.subscribe((todos) => {
       this.todoArr = todos;
     });
-  }
 
+    this.todoArr = this.todoServ.todoArr;
+
+    this.searchServ.getSearchTerm().subscribe((term: string) => {
+      if (term.trim() === '') {
+        this.filteredTodos = [...this.todoArr];
+      } else {
+        this.filteredTodos = this.todoArr.filter((todo) =>
+          todo.todo.toLowerCase().includes(term.toLowerCase())
+        );
+      }
+    });
+  }
   toggleCompleted(todo: iTodo) {
     todo.completed = !todo.completed;
 
