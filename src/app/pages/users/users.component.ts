@@ -16,6 +16,8 @@ export class UsersComponent implements OnInit {
     private usersServ: UserServiceService
   ) {}
 
+  // in vista vedo i todo solo del 4
+
   ngOnInit() {
     this.todoServ.todoArr$.subscribe((todos) => {
       this.todoArr = this.usersServ.getUserWithToDo(todos);
