@@ -7,5 +7,5 @@ export interface iUsers {
   email: string;
   image: string;
   title: string;
-  toDo?: iTodo;
+  todo?: iTodo[];
 }

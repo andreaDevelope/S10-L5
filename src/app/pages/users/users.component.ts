@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TodoServiceService } from '../../services/todo-service.service';
 import { UserServiceService } from '../../services/user-service.service';
 import { iUsers } from '../../moduls/i-users';
+import { iTodo } from '../../moduls/i-todo';
 
 @Component({
   selector: 'app-users',
@@ -9,7 +10,9 @@ import { iUsers } from '../../moduls/i-users';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
-  todoArr: iUsers[] = [];
+  todoArr: iTodo[] = [];
+
+  ibridUsers: iUsers[] = [];
 
   constructor(
     private todoServ: TodoServiceService,
@@ -19,9 +22,11 @@ export class UsersComponent implements OnInit {
   // in vista vedo i todo solo del 4
 
   ngOnInit() {
-    this.todoServ.todoArr$.subscribe((todos) => {
-      this.todoArr = this.usersServ.getUserWithToDo(todos);
-      console.log(this.todoArr);
-    });
+    this.todoArr = this.todoServ.todoArr;
+    console.log(this.getIbridUsers());
+  }
+
+  getIbridUsers() {
+    return (this.ibridUsers = this.usersServ.getUserWithTodo(this.todoArr));
   }
 }

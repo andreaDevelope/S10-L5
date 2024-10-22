@@ -1,29 +1,28 @@
-<p class="text-center my-3" *ngIf="todoArr.length === 0">loading...</p>
-<div class="container" *ngIf="todoArr.length > 1">
-  <div class="row">
-    <div class="col-12 col-4" *ngFor="let entity of todoArr">
-      <div
-        class="card rounded-5 my-3"
-        [ngClass]="{
-          completed: entity.toDo?.completed,
-          'not-completed': !entity.toDo?.completed
-        }"
-      >
-        <img [src]="entity.image" class="card-img-top" alt="img-author" />
-        <div class="card-body">
-          <h5 class="card-title">
-            {{ entity.firstName }} {{ entity.lastName }}
-          </h5>
-          <p>Mansione: {{ entity.title }}</p>
-
-          <p class="card-text">
-            <span *ngIf="entity.toDo; else noTodo">
-              Task: {{ entity.toDo.todo }} (ID: {{ entity.toDo.id }})
-              <span *ngIf="entity.toDo.completed"> - Completed</span>
-              <span *ngIf="!entity.toDo.completed"> - Not Completed</span>
-            </span>
-            <ng-template #noTodo>Nessun to-do assegnato</ng-template>
-          </p>
+<p class="text-center mt-3" *ngIf="ibridUsers.length < 1">loading...</p>
+<div class="container">
+  <div class="row" *ngIf="ibridUsers.length > 0">
+    <div class="col-12 col-md-4 my-3" *ngFor="let user of ibridUsers">
+      <div class="card rounded-5">
+        <img
+          src="{{ user.image }}"
+          class="card-img-top mx-auto"
+          alt="img-user"
+        />
+        <div class="card-body d-flex flex-column justify-content-around">
+          <p class="text-center">{{ user.firstName }} {{ user.lastName }}</p>
+          <h5 class="text-center my-2">Task:</h5>
+          <ng-container *ngFor="let todo of user.todo">
+            <p
+              [ngClass]="
+                todo.completed
+                  ? 'text-success text-center'
+                  : 'text-danger text-center'
+              "
+            >
+              {{ todo.todo }}
+            </p>
+            <p *ngIf="!todo.todo">no task for this user</p>
+          </ng-container>
         </div>
       </div>
     </div>
